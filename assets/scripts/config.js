@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://ericlscace.github.io/All-the-Matrices-front-end',
+    production: 'https://allthemats.herokuapp.com/',
     development: 'http://localhost:4741/'
   }
 }
