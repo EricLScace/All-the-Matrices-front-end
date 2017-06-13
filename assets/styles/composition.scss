@@ -1,0 +1,20 @@
+body {
+  background-color: $gray;
+  font-size: $font-size;
+}
+
+.announcements {
+  color: $red;
+  margin-top: $font-size;
+}
+
+.container-fluid {
+  max-width: 860px;
+  min-width: 640px;
+}
+
+.title {
+  background-color: $gray;
+  font-size: $font-size-title;
+  text-align: center;
+}
