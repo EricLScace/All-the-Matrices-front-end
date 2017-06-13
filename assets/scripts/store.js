@@ -1,4 +1,5 @@
 'use strict'
+// Stateful data
 
 const store = {
 }

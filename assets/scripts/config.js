@@ -3,7 +3,7 @@
 const config = {
   apiOrigins: {
     production: 'https://ericlscace.github.io/All-the-Matrices-front-end',
-    development: 'http://localhost:7165/'
+    development: 'http://localhost:4741/'
   }
 }
 
