@@ -12,6 +12,7 @@ const noPassword = 'Please enter your password twice.'
 const notInDatabase = 'Code not yet in this database (or was never manufactured).'
 const otherServerError = 'Database not available. Please try again later.'
 const ownerMsg = function (matrixInfo) {
+  matrixInfo.owner = (matrixInfo.owner === '') ? 'User' : matrixInfo.owner
   switch (matrixInfo.quantity) {
     case null:
       return 'You have not registered any sets of this matrix.'
