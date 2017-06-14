@@ -3,9 +3,15 @@ body {
   font-size: $font-size;
 }
 
-.announcements {
+.announcement {
   color: $red;
   margin-top: $font-size;
+}
+
+.app-title {
+  background-color: $gray;
+  font-size: $font-size-title;
+  text-align: center;
 }
 
 .container-fluid {
@@ -13,8 +19,8 @@ body {
   min-width: 640px;
 }
 
-.title {
-  background-color: $gray;
-  font-size: $font-size-title;
-  text-align: center;
+.matrix .response .row {
+  // This didn't work. Debug later.
+  // height: 2 * $font-size;
+  margin-top: $font-size;
 }

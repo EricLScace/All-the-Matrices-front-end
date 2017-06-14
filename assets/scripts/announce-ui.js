@@ -1,19 +1,26 @@
 'use strict'
-// Utilities to manage the announcement area.
+// Utilities to manage the response area
 
-const append = function (msg) {
+// msg is the message to be displayed
+// loc is the ID of where to display the message...
+//    if loc absent, display is in the announcements window
+
+const append = function (msg, loc) {
+  if (arguments.length === 1) loc = 'announcement'
   // Erase & insert the requested announcement in the proper language.
-  $('#announcement').append('<br>' + msg)
+  $('#' + loc).append('<br>' + msg)
 }
 
-const clear = function () {
+const clear = function (loc) {
+  if (!arguments.length) loc = 'announcement'
   // Erase announcements.
-  $('#announcement').html('')
+  $('#' + loc).html('')
 }
 
-const post = function (msg) {
+const post = function (msg, loc) {
+  if (arguments.length === 1) loc = 'announcement'
   // Erase & insert the requested announcement in the proper language.
-  $('#announcement').html(msg)
+  $('#' + loc).html(msg)
 }
 
 module.exports = {
