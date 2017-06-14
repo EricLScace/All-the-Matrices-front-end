@@ -3,6 +3,7 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const matrixGetUI = require('./matrix-get-ui')
+const userRegisterUI = require('./user-register-ui')
 const store = require('./store')
 const User = require('./user')
 
@@ -12,6 +13,6 @@ $(() => {
   if (!store.Player) store.User = new User()
   // Insert application heading
   $('#app-title').html('<h1>All the Linotype Matrices</h1>')
-  // Load public get-matrix form
+  userRegisterUI.loadLogInRegisterButtons()
   matrixGetUI.loadGetMatrixForm()
 })

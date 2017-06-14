@@ -2,7 +2,7 @@
 // Matrix section of page.
 const getFormFields = require('../../lib/get-form-fields')
 const announceUI = require('./announce-ui.js')
-const getMatrixTemplate = require('../templates/getMatrixTemplate.handlebars')
+const getMatrixTemplate = require('../templates/getMatrix.handlebars')
 const matrixAPI = require('./matrix-api.js')
 const msg = require('./messages.js')
 
