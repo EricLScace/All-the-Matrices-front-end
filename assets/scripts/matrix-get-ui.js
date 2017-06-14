@@ -5,6 +5,7 @@ const announceUI = require('./announce-ui.js')
 const getMatrixTemplate = require('../templates/getMatrix.handlebars')
 const matrixAPI = require('./matrix-api.js')
 const msg = require('./messages.js')
+const store = require('./store')
 
 const displayMatrix = function (response) {
   const matrixInfo = response.matrix
@@ -17,8 +18,8 @@ const displayMatrix = function (response) {
       announceUI.append(`${msg.andWord}${matrixInfo.aux2_typeface}`, 'response')
     }
   }
-  // Display any details about sets owned.
-  if (matrixInfo.quantity) {
+  // Display any details about sets owned if logged in.
+  if (store.user.isLoggedIn) {
     announceUI.append(msg.ownerMsg(matrixInfo), 'response')
   } else {
     announceUI.append(msg.loginToOwn, 'response')

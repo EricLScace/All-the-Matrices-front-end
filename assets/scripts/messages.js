@@ -1,4 +1,6 @@
 'use strict'
+const store = require('./store')
+
 // messages in English for now
 const alreadyRegistered = 'This email is already registered.'
 const andWord = 'and '
@@ -13,9 +15,9 @@ const ownerMsg = function (matrixInfo) {
   switch (matrixInfo.quantity) {
     case null:
       return 'You have not registered any sets of this matrix.'
-    case 0:
+    case '0':
       return 'You have not registered any sets of this matrix.'
-    case 1:
+    case '1':
       return `${matrixInfo.owner} has registered 1 set of this matrix.`
     default:
       return `${matrixInfo.owner} has registered ${matrixInfo.quantity} sets of this matrix.`
@@ -25,6 +27,7 @@ const registeredOK = 'Registered successfully!'
 const registering = 'Registering you…'
 const registrationFailed = 'Registration failed mysteriously ☹️. Try again or log-in with a different account.'
 const unequalPassword = 'Passwords not identical; please re-enter both.'
+const userInfo = function () { `${store.user.name} ${store.user.organization}` }
 const withWord = 'with '
 
 module.exports = {
@@ -42,5 +45,6 @@ module.exports = {
   registering,
   registrationFailed,
   unequalPassword,
+  userInfo,
   withWord
 }

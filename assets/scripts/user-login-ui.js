@@ -5,6 +5,7 @@ const authnAPI = require('./authn-api')
 const getFormFields = require('../../lib/get-form-fields')
 const matrixGetUI = require('./matrix-get-ui')
 const msg = require('./messages.js')
+const loggedInForm = require('../templates/loggedInForm.handlebars')
 const logInForm = require('../templates/logInForm.handlebars')
 const store = require('./store')
 const userRegisterUI = require('./user-register-ui')
@@ -17,12 +18,16 @@ const logInSuccess = function (response) {
   // Load logged-in name/org, settings, log-out and pwd-change buttons
   store.user.setLogInStatus(true,
     response.user.email,
+    null,
     response.user.id,
+    response.user.token,
     response.user.name,
     response.user.organization)
   announceUI.clear('announcement') // Clears announcement area.
+  $('#authn').html(loggedInForm) // Load authn area.
+  announceUI.post(msg.userInfo, 'logged-in-user')
+  // attach event handlers to buttons
   matrixGetUI.loadGetMatrixForm() // Loads matrix area
-  // Load response area with logged-in user info
 }
 
 // Log-in submit button clicked

@@ -18,7 +18,7 @@ User.prototype.setLogInStatus = function (isLoggedIn, email, password, id, authN
   switch (isLoggedIn) {
     case true:
       // Accept proffered credentials as logged in.
-      this._isLoggedIn = true
+      this.isLoggedIn = true
       this.id = id
       this.authNToken = authNToken
       this.name = name
@@ -26,13 +26,13 @@ User.prototype.setLogInStatus = function (isLoggedIn, email, password, id, authN
       return true
     case null:
       // Cache proffered email & password for future use
-      this._isLoggedIn = null
+      this.isLoggedIn = null
       this.email = email
       this._password = password
       return null
     default:
       // Log out a player by changing _isLoggedIn and erasing credentials.
-      this._isLoggedIn = false
+      this.isLoggedIn = false
       this.email = ''
       this.id = ''
       this.authNToken = ''
