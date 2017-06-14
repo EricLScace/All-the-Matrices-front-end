@@ -5,6 +5,7 @@ const announceUI = require('./announce-ui.js')
 const getMatrixTemplate = require('../templates/getMatrix.handlebars')
 const matrixAPI = require('./matrix-api.js')
 const msg = require('./messages.js')
+const setUpdateForm = require('../templates/setUpdateForm.handlebars')
 const store = require('./store')
 
 const displayMatrix = function (response) {
@@ -21,6 +22,8 @@ const displayMatrix = function (response) {
   // Display any details about sets owned if logged in.
   if (store.user.isLoggedIn) {
     announceUI.append(msg.ownerMsg(matrixInfo), 'response')
+    $('#response').append(setUpdateForm())
+    // add submit event listener
   } else {
     announceUI.append(msg.loginToOwn, 'response')
   }
