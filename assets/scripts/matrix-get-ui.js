@@ -23,7 +23,7 @@ const displayMatrix = function (response) {
   if (store.user.isLoggedIn) {
     announceUI.append(msg.ownerMsg(matrixInfo), 'response')
     $('#response').append(setUpdateForm())
-    // add submit event listener
+    $('#response').on('submit', onUpdateSets)
   } else {
     announceUI.append(msg.loginToOwn, 'response')
   }
@@ -67,6 +67,10 @@ const onGetMatrix = function (e) {
       .then(getMatrixSuccess)
       .catch(getMatrixFailure)
   }
+}
+
+const onUpdateSets = function (e) {
+  return true
 }
 
 module.exports = {loadGetMatrixForm}
