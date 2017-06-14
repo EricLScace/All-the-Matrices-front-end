@@ -33,7 +33,7 @@ const onLogIn = function (e) {
   const credentials = getFormFields(e.target)
   // Cache credentials & launch API request
   store.user.setLogInStatus(null, credentials.email, credentials.password)
-  authnAPI.login(credentials)
+  authnAPI.logIn(credentials)
   .then(logInSuccess)
   .catch(logInFailure)
 }
