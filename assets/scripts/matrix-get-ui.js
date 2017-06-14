@@ -70,7 +70,12 @@ const onGetMatrix = function (e) {
 }
 
 const onUpdateSets = function (e) {
-  return true
+  e.preventDefault()
+  store.matrix.quantity = getFormFields(e.target).quantity
+  if (store.matrix.quantity === '') store.matrix.quantity = '0'
+  matrixAPI.update(store.matrix)
+    .then(getMatrixSuccess)
+    .catch(getMatrixFailure)
 }
 
 module.exports = {loadGetMatrixForm}

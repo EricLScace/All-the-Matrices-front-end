@@ -6,6 +6,8 @@ const store = require('./store')
 
 const show = function (matrix) {
   matrix.symbol = 'Δ'
+  // Cache current matrix in store to use later in updating ownership
+  store.matrix = matrix
   // Is user logged in?
   if (store.user.isLoggedIn) {
     // Yes. Submit request with token.
@@ -32,7 +34,24 @@ const show = function (matrix) {
   }
 }
 
+const update = function (matrixUpdate) {
+  return $.ajax({
+    url: config.apiOrigin + '/matrix',
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Token token=' + store.user.authNToken
+    },
+    data: {
+      'version': matrixAPIversion,
+      'matrix': matrixUpdate
+    }
+  })
+}
+
 // UPDATE
 // Submit request with token.
 
-module.exports = {show}
+module.exports = {
+  show,
+  update
+}
