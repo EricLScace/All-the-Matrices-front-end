@@ -7,13 +7,14 @@ const logInRegisterButtons = require('../templates/logInRegisterButtons.handleba
 const msg = require('./messages.js')
 const registerForm = require('../templates/registerForm.handlebars')
 const store = require('./store')
+const userLogInUI = require('./user-login-ui')
 
 // Log-in & register buttons
 const loadLogInRegisterButtons = function () {
   $('#authn').html(logInRegisterButtons())
   // $('#log-in').on('click', onLogInClick)
   $('#register').on('click', onRegisterClick)
-  // function call to add above plus log-in click handler
+  $('#log-in').on('click', userLogInUI.onLogInClick)
 }
 
 // Submitted the register form

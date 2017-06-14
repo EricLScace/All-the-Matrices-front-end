@@ -14,9 +14,9 @@ const append = function (msg, loc) {
 const clear = function (loc) {
   if (!arguments.length) loc = 'announcement'
   if (loc === 'all') {
-    $('#announcement' + loc).html('')
-    $('#matrix' + loc).html('')
-    $('#response' + loc).html('')
+    $('#announcement').html('')
+    $('#matrix').html('')
+    $('#response').html('')
     return
   }
   // Else erase specified area.
