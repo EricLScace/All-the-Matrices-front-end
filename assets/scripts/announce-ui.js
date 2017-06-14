@@ -13,7 +13,13 @@ const append = function (msg, loc) {
 
 const clear = function (loc) {
   if (!arguments.length) loc = 'announcement'
-  // Erase announcements.
+  if (loc === 'all') {
+    $('#announcement' + loc).html('')
+    $('#matrix' + loc).html('')
+    $('#response' + loc).html('')
+    return
+  }
+  // Else erase specified area.
   $('#' + loc).html('')
 }
 
