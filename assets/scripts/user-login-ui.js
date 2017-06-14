@@ -53,5 +53,7 @@ const onLogInClick = function () {
 }
 
 module.exports = {
-  onLogInClick
+  onLogInClick,
+  logInSuccess,
+  logInFailure
 }

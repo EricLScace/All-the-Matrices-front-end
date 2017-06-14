@@ -54,7 +54,6 @@ const registerFailure = function (response) {
 
 const registerSuccess = function (response) {
   announceUI.post(msg.registeredOK, 'announcement')
-  announceUI.append(msg.loggingIn, 'announcement')
 }
 
 const validateCredentials = function (credentials) {

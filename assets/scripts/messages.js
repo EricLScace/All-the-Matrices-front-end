@@ -24,7 +24,7 @@ const ownerMsg = function (matrixInfo) {
       return `${matrixInfo.owner} has registered ${matrixInfo.quantity} sets of this matrix.`
   }
 }
-const registeredOK = 'Registered successfully!'
+const registeredOK = 'Registered successfully! Please log in.'
 const registering = 'Registering you…'
 const registrationFailed = 'Registration failed mysteriously ☹️. Try again or log-in with a different account.'
 const unequalPassword = 'Passwords not identical; please re-enter both.'
