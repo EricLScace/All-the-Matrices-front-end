@@ -15,32 +15,30 @@ User.prototype.setLogInStatus = function (isLoggedIn, email, password, id, authN
   //    password (received as strID).
   //    Used if we want to re-authenticate user in the immediate future; e.g.,
   //    to log a new user in after he was successfully registered.
-  if (arguments.length > 0) {
-    switch (isLoggedIn) {
-      case true:
-        // Accept proffered credentials as logged in.
-        this._isLoggedIn = true
-        this.id = id
-        this.authNToken = authNToken
-        this.name = name
-        this.org = org
-        break
-      case null:
-        // Cache proffered email & password for future use
-        this._isLoggedIn = null
-        this.email = email
-        this._password = password
-        break
-      case false:
-        // Log out a player by changing _isLoggedIn and erasing credentials.
-        this._isLoggedIn = false
-        this.email = ''
-        this.id = ''
-        this.authNToken = ''
-        this._password = ''
-    }
+  switch (isLoggedIn) {
+    case true:
+      // Accept proffered credentials as logged in.
+      this._isLoggedIn = true
+      this.id = id
+      this.authNToken = authNToken
+      this.name = name
+      this.org = org
+      return true
+    case null:
+      // Cache proffered email & password for future use
+      this._isLoggedIn = null
+      this.email = email
+      this._password = password
+      return null
+    default:
+      // Log out a player by changing _isLoggedIn and erasing credentials.
+      this._isLoggedIn = false
+      this.email = ''
+      this.id = ''
+      this.authNToken = ''
+      this._password = ''
+      return false
   }
-  return this._isLoggedIn
 }
 
 module.exports = User

@@ -40,7 +40,7 @@ const onRegisterClick = function () {
   announceUI.clear('all')
   $('#authn').html(registerForm)
   $('#register').on('submit', onRegister)
-  // function call to add above plus log-in click handler
+  $('#log-in').on('click', userLogInUI.onLogInClick)
 }
 
 const registerFailure = function (response) {
@@ -75,5 +75,6 @@ const validateCredentials = function (credentials) {
 }
 
 module.exports = {
-  loadLogInRegisterButtons
+  loadLogInRegisterButtons,
+  onRegisterClick
 }

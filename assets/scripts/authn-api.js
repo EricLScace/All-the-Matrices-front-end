@@ -3,7 +3,18 @@
 // See wiki for API call formats
 const config = require('./config')
 
-// Invokes sign-up API to register a new player
+// Invokes sign-in API to log in user
+const logIn = function (credentials) {
+  // Duplicate password to meet API demand for password_confirmation
+  credentials.password_confirmation = credentials.password
+  return $.ajax({
+    url: config.apiOrigin + '/sign-in',
+    method: 'POST',
+    data: credentials
+  })
+}
+
+// Invokes sign-up API to register a new user
 const register = function (credentials) {
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
@@ -13,5 +24,6 @@ const register = function (credentials) {
 }
 
 module.exports = {
+  logIn,
   register
 }
