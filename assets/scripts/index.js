@@ -10,7 +10,7 @@ const User = require('./user')
 $(() => {
   setAPIOrigin(location, config)
   // Instantiate a new User in store (there should not be one).
-  if (!store.User) store.User = new User()
+  if (!store.User) store.user = new User()
   // Insert application heading
   $('#app-title').html('<h1>All the Linotype Matrices</h1>')
   userRegisterUI.loadLogInRegisterButtons()
