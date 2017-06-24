@@ -28,9 +28,9 @@ const onClick = function (e) {
       break
     case 'register-request':
       authnRegisterUI.onRequest()
-  //     break
-  //   case 'register-submit':
-  //     authnRegisterUI.onRegister(e)
+      break
+    case 'register-submit':
+      authnRegisterUI.onSubmit(e)
   }
 }
 
