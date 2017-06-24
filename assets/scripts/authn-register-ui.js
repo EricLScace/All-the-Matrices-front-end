@@ -35,12 +35,10 @@ const onRegister = function (e) {
 }
 
 // Clicked the Register button
-const onRegisterClick = function () {
+const onRequest = function () {
   // Clear announcement, response & matrix areas.
   announceUI.clear('all')
   $('#authn').html(registerForm)
-  $('#register').on('submit', onRegister)
-  $('#log-in').on('click', authnLoginUI.onLogInClick)
 }
 
 const registerFailure = function (response) {
@@ -75,5 +73,5 @@ const validateCredentials = function (credentials) {
 
 module.exports = {
   loadLogInRegisterButtons,
-  onRegisterClick
+  onRequest
 }
