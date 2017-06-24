@@ -1,7 +1,7 @@
 'use strict'
 // UX for user registration.
 
-const announceUI = require('./announce-ui.js')
+const announceUI = require('./announce-ui')
 const authnAPI = require('./authn-api')
 const getFormFields = require('../../lib/get-form-fields')
 const matrixGetUI = require('./matrix-get-ui')

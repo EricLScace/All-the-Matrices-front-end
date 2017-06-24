@@ -19,6 +19,11 @@ const logIn = function (creds) {
   })
 }
 
+// Invokes sign-out API to log out user with existing credentials
+const logOut = function () {
+  // const credentials =
+}
+
 // Invokes sign-up API to register a new user
 const register = function (credentials) {
   return $.ajax({
@@ -30,5 +35,6 @@ const register = function (credentials) {
 
 module.exports = {
   logIn,
+  logOut,
   register
 }

@@ -2,6 +2,7 @@
 // Dispatcher for events in the authn authentication section of the DOM.
 
 const authnLoginUI = require('./authn-login-ui')
+const authnLogoutUI = require('./authn-logout-ui')
 const authnRegisterUI = require('./authn-register-ui')
 const logInRegisterButtons = require('../templates/logInRegisterButtons.handlebars')
 
@@ -25,6 +26,9 @@ const onClick = function (e) {
       break
     case 'log-in-submit':
       authnLoginUI.onSubmit(e)
+      break
+    case 'log-out-request':
+      authnLogoutUI.onRequest()
       break
     case 'register-request':
       authnRegisterUI.onRequest()

@@ -5,6 +5,7 @@ const store = require('./store')
 const alreadyRegistered = 'This email address is already registered. Attempting to log you in…'
 const andWord = 'and '
 const loggingIn = 'Logging you in…'
+const loggingOut = 'Logging you out…'
 const loginToOwn = 'Logged-in users may register the number of sets of this matrix they own.'
 const noPrefixSuffix = 'Please enter both the suffix & prefix codes from the matrix.'
 const noEmail = 'Please enter your email address.'
@@ -35,6 +36,7 @@ module.exports = {
   alreadyRegistered,
   andWord,
   loggingIn,
+  loggingOut,
   loginToOwn,
   noEmail,
   noPassword,
