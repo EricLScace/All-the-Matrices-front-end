@@ -2,7 +2,7 @@
 const store = require('./store')
 
 // messages in English for now
-const alreadyRegistered = 'This email is already registered.'
+const alreadyRegistered = 'This email address is already registered. Attempting to log you in…'
 const andWord = 'and '
 const loggingIn = 'Logging you in…'
 const loginToOwn = 'Logged-in users may register the number of sets of this matrix they own.'
@@ -26,7 +26,7 @@ const ownerMsg = function (matrixInfo) {
 }
 const registeredOK = 'Registered successfully! Please log in.'
 const registering = 'Registering you…'
-const registrationFailed = 'Registration failed mysteriously ☹️. Try again or log-in with a different account.'
+const registrationFailed = 'Registration failed mysteriously ☹️ Try again or log-in with a different account.'
 const unequalPassword = 'Passwords not identical; please re-enter both.'
 const userInfo = function () { `${store.user.name} ${store.user.organization}` }
 const withWord = 'with '

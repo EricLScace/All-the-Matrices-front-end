@@ -8,7 +8,8 @@ const registerForm = require('../templates/registerForm.handlebars')
 const store = require('./store')
 
 const failure = function (response) {
-  if (response.responseText.email === 'has already been taken') {
+  if (response.responseText.includes('has already been taken')) {
+    // Presence of email object indicates duplicate email registration
     announceUI.post(msg.alreadyRegistered, 'announcement')
     // Try logging in
   } else {
