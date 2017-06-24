@@ -1,20 +1,20 @@
 'use strict'
 // UX for user registration.
+
 const announceUI = require('./announce-ui.js')
 const authnAPI = require('./authn-api')
 const getFormFields = require('../../lib/get-form-fields')
 const matrixGetUI = require('./matrix-get-ui')
 const msg = require('./messages.js')
 const loggedInForm = require('../templates/loggedInForm.handlebars')
-const logInForm = require('../templates/logInForm.handlebars')
+const loginForm = require('../templates/loginForm.handlebars')
 const store = require('./store')
-const userRegisterUI = require('./user-register-ui')
 
-const logInFailure = function (response) {
+const failure = function (response) {
   return
 }
 
-const logInSuccess = function (response) {
+const success = function (response) {
   // Load logged-in name/org, settings, log-out and pwd-change buttons
   store.user.setLogInStatus(true,
     response.user.email,
@@ -30,28 +30,27 @@ const logInSuccess = function (response) {
   matrixGetUI.loadGetMatrixForm() // Loads matrix area
 }
 
-// Log-in submit button clicked
-const onLogIn = function (e) {
+// Clicked the Log-in button
+const onRequest = function () {
+  // Clear announcement, response & matrix areas.
+  announceUI.clear('all')
+  $('#authn').html(loginForm)
+}
+
+// Clicked log-in form submit button
+const onSubmit = function (e) {
   e.preventDefault()
   // Clear old error messages, if any.
   announceUI.post(msg.loggingIn, 'announcement')
-  const credentials = getFormFields(e.target)
+  const credentials = getFormFields(e.target.form)
   // Cache credentials & launch API request
   store.user.setLogInStatus(null, credentials.email, credentials.password)
   authnAPI.logIn(credentials)
-  .then(logInSuccess)
-  .catch(logInFailure)
-}
-
-// Clicked the Log-in button
-const onClick = function () {
-  // Clear announcement, response & matrix areas.
-  announceUI.clear('all')
-  $('#authn').html(logInForm)
+  .then(success)
+  .catch(failure)
 }
 
 module.exports = {
-  onClick,
-  logInSuccess,
-  logInFailure
+  onRequest,
+  onSubmit
 }
