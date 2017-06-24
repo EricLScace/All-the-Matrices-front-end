@@ -23,8 +23,10 @@ const onClick = function (e) {
   e.preventDefault()
   switch (e.target.id) {
     case 'log-in-request':
-      authnLoginUI.onClick()
+      authnLoginUI.onRequest()
       break
+    case 'log-in-submit':
+      authnLoginUI.onSubmit(e)
   //   case 'register-request':
   //     authnRegisterUI.onClick()
   //     break
