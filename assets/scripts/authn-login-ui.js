@@ -44,16 +44,14 @@ const onLogIn = function (e) {
 }
 
 // Clicked the Log-in button
-const onLogInClick = function () {
+const onClick = function () {
   // Clear announcement, response & matrix areas.
   announceUI.clear('all')
   $('#authn').html(logInForm)
-  $('#log-in').on('submit', onLogIn)
-  $('#register').on('click', userRegisterUI.onRegisterClick)
 }
 
 module.exports = {
-  onLogInClick,
+  onClick,
   logInSuccess,
   logInFailure
 }

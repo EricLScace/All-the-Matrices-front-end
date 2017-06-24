@@ -1,10 +1,8 @@
 'use strict'
 // Dispatcher for events in the authn authentication section of the DOM.
 
+const authnLoginUI = require('./authn-login-ui')
 const logInRegisterButtons = require('../templates/logInRegisterButtons.handlebars')
-
-// Module with log-in authentication logic
-// const authnLogInUI = require('./authn-login-ui')
 
 // Module with registration logic
 // const authnRegisterUI = require('./authn-register-ui')
@@ -23,16 +21,16 @@ const initUI = function () {
 // Dispatch clicks
 const onClick = function (e) {
   e.preventDefault()
-  // switch (e.target.id) {
-  //   case 'log-in':
-  //     authnLogInUI.onClick()
-  //     break
-  //   case 'register':
+  switch (e.target.id) {
+    case 'log-in-request':
+      authnLoginUI.onClick()
+      break
+  //   case 'register-request':
   //     authnRegisterUI.onClick()
   //     break
   //   case 'register-submit':
   //     authnRegisterUI.onRegister(e)
-  // }
+  }
 }
 
 module.exports = { initUI }
