@@ -2,6 +2,7 @@
 // Contains all calls to the authentication API.
 // See wiki for API call formats
 const config = require('./config')
+const store = require('./store')
 
 // Invokes sign-in API to log in user
 const logIn = function (creds) {
@@ -21,7 +22,13 @@ const logIn = function (creds) {
 
 // Invokes sign-out API to log out user with existing credentials
 const logOut = function () {
-  // const credentials =
+  return $.ajax({
+    url: config.apiOrigin + '/sign-out/' + store.user.id,
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Token token=' + store.user.authNToken
+    }
+  })
 }
 
 // Invokes sign-up API to register a new user
