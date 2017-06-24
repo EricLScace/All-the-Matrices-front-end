@@ -27,6 +27,8 @@ const msg = require('./messages')
 
 // Clicked the Log-in button
 const onRequest = function () {
+  // Remove the log-out & change-settings buttons
+  announceUI.clear('authn')
   // Tell user he is being logged out.
   announceUI.post(msg.loggingOut, 'announcement')
 }

@@ -8,7 +8,7 @@
 const append = function (msg, loc) {
   if (arguments.length === 1) loc = 'announcement'
   // Erase & insert the requested announcement in the proper language.
-  $('#' + loc).append('<br>' + msg)
+  $(`#${loc}`).append('<br>' + msg)
 }
 
 const clear = function (loc) {
@@ -20,7 +20,7 @@ const clear = function (loc) {
     return
   }
   // Else erase specified area.
-  $('#' + loc).html('')
+  $(`#${loc}`).html('')
 }
 
 const post = function (msg, loc) {
