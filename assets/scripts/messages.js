@@ -32,12 +32,8 @@ const registering = 'Registering you…'
 const registrationFailed = 'Sorry! Registration failed mysteriously ☹️ — try again or log-in with a different account.'
 const unequalPassword = 'Password entries are not identical; please re-enter both.'
 const userInfo = function () {
-  let str = ''
-  if (store.user.name) {
-    str = store.user.name
-    if (store.user.organization) str += ' —'
-  }
-  if (store.user.organization) str += ` ${store.user.organization}`
+  let str = (store.user.name) ? store.user.name : store.user.email
+  if (store.user.organization) str += ` — ${store.user.organization}`
   return str
 }
 const withWord = 'with '

@@ -14,22 +14,23 @@ User.prototype.setLogInStatus = function (isLoggedIn, email, password, id, authN
   if (isLoggedIn) {
     // Accept proffered credentials as logged in.
     this.isLoggedIn = true
+    this.email = email
     this.id = id
     this.authNToken = authNToken
     this.name = name
     this.org = org
     // remove cached password information
-    this.password = ''
-    this.passwordConfirmation = ''
+    this.password = undefined
+    this.passwordConfirmation = undefined
     return true
   } else {
     // Log out a player by changing isLoggedIn and erasing credentials.
     this.isLoggedIn = false
-    this.email = ''
-    this.id = ''
+    this.email = undefined
+    this.id = undefined
     this.authNToken = ''
-    this.password = ''
-    this.passwordConfirmation = ''
+    this.password = undefined
+    this.passwordConfirmation = undefined
     return false
   }
 }
