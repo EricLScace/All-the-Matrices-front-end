@@ -3,10 +3,9 @@
 
 const announceUI = require('./announce-ui')
 const authnAPI = require('./authn-api')
+const authnUtilities = require('./authn-utilities-ui')
 const getFormFields = require('../../lib/get-form-fields')
-const matrixGetUI = require('./matrix-get-ui')
 const msg = require('./messages.js')
-const loggedInForm = require('../templates/loggedInForm.handlebars')
 const loginForm = require('../templates/loginForm.handlebars')
 const store = require('./store')
 
@@ -29,10 +28,7 @@ const success = function (response) {
     response.user.name,
     response.user.organization)
   announceUI.clear('announcement') // Clears announcement area.
-  $('#authn').html(loggedInForm) // Load authn area.
-  announceUI.post(msg.userInfo, 'logged-in-user')
-  // attach event handlers to buttons
-  matrixGetUI.loadGetMatrixForm() // Loads matrix area
+  authnUtilities.postLoggedInUserWorkingView()
 }
 
 // Clicked the Log-in button

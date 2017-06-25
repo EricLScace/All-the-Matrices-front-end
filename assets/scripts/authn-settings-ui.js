@@ -2,10 +2,17 @@
 // UX for settings changes.
 const announceUI = require('./announce-ui.js')
 // const authnAPI = require('./authn-api')
+const authnUtilities = require('./authn-utilities-ui')
 // const getFormFields = require('../../lib/get-form-fields')
 const msg = require('./messages.js')
 const changeSettings = require('../templates/changeSettings.handlebars')
 // const store = require('./store')
+
+const onCancel = function () {
+  // Restore logged-in condition
+  // Restore the matrix submit form
+  authnUtilities.postLoggedInUserWorkingView()
+}
 
 // Extracts fields buried inside the registration form object
 // const extractFormFields = function (APIObject, user) {
@@ -25,10 +32,21 @@ const changeSettings = require('../templates/changeSettings.handlebars')
 //     announceUI.post(msg.registrationFailed, 'announcement')
 //   }
 // }
-//
-// // Submitted the register form
-// const onSubmit = function (e) {
-//   e.preventDefault()
+
+// Clicked the Settings icon
+const onRequest = function () {
+  // Clear announcement, response & matrix areas.
+  announceUI.clear('all')
+  // Display settings change form
+  $('#authn').html(changeSettings)
+  announceUI.post(msg.userInfo, 'logged-in-user')
+  // Hide the settings icon but keep the space reserved on the screen
+  $('#change-settings-request').css('visibility', 'hidden')
+}
+
+// Submitted the register form
+const onSubmit = function (e) {
+  e.preventDefault()
 //   // Clear old error messages, if any.
 //   announceUI.clear('announcement')
 //   // Get the form's contents
@@ -45,17 +63,6 @@ const changeSettings = require('../templates/changeSettings.handlebars')
 //       .then(success)
 //       .catch(failure)
 //   }
-// }
-
-// Clicked the Settings icon
-const onRequest = function () {
-  // Clear announcement, response & matrix areas.
-  announceUI.clear('all')
-  // Display settings change form
-  $('#authn').html(changeSettings)
-  announceUI.post(msg.userInfo, 'logged-in-user')
-  // Hide the settings icon but keep the space reserved on the screen
-  $('#change-settings-request').css('visibility', 'hidden')
 }
 
 // const success = function (response) {
@@ -82,6 +89,7 @@ const onRequest = function () {
 // }
 
 module.exports = {
-  // onSubmit,
-  onRequest
+  onCancel,
+  onRequest,
+  onSubmit
 }
