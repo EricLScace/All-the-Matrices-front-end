@@ -1,14 +1,10 @@
 <!-- Get Matrix form HTML -->
-<div class="matrix col-xs-offset-2 col-xs-7">
-  <form id="get-matrix">
-    <fieldset>
-      <p>Enter matrix code:</p>
-      <input type="text"
-      name="matrix[code_prefix]" placeholder="prefix before Δ">
-      <p> Δ </p>
-      <input type="text"
-      name="matrix[code_suffix]" placeholder="digits after Δ">
-      <input type="submit" name="submit" value="Look up">
-    </fieldset>
+<div class='matrix col-xs-offset-2 col-xs-7'>
+  <form id='get-matrix'>
+    Enter matrix code:
+    <input type='text' name='matrix[code_prefix]' class='code-prefix'>
+    Δ
+    <input type='text' name='matrix[code_suffix]'>
+    <input type='submit' name='submit' value='Look up'>
   </form>
 </div>

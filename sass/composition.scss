@@ -27,6 +27,10 @@ body {
   margin-right: $font-size;
 }
 
+.code-prefix {
+  text-align: right;
+}
+
 .container-fluid {
   display: inline;
   max-width: 786px;
@@ -37,10 +41,10 @@ body {
   text-align: right;
 }
 
-.matrix .row {
+.matrix {
   margin-top: $font-size;
 }
 
-.repsone {
+.response {
   margin-top: 3 * $font-size;
 }
