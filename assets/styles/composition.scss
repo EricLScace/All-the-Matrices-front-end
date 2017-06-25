@@ -28,6 +28,10 @@ body {
   min-width: 640px;
 }
 
+.logged-in-user {
+  text-align: right;
+}
+
 .matrix .response .row {
   margin-top: $font-size;
 }
