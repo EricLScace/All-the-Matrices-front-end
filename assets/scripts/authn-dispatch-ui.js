@@ -6,19 +6,15 @@ const authnLogoutUI = require('./authn-logout-ui')
 const authnRegisterUI = require('./authn-register-ui')
 const authnSettingsUI = require('./authn-settings-ui')
 const logInRegisterButtons = require('../templates/logInRegisterButtons.handlebars')
-const matrixGetUI = require('./matrix-get-ui')
+// const matrixGetUI = require('./matrix-get-ui')
 
-// Other similar modules; e.g., to change password/settings.
-
-// Initialized  authentication section of DOM
+// Initialize authentication section of DOM
 // Invoked by index.js at page load.
 const initUI = function () {
   // Load the register & log-in buttons into DOM
   $('#authn').html(logInRegisterButtons())
   // Add delegating click dispatcher to this section of DOM
   $('#authn').on('click', onClick)
-  // Load get-matrix form
-  matrixGetUI.loadGetMatrixForm()
 }
 
 // Dispatch clicks

@@ -10,62 +10,44 @@ const store = require('./store')
 
 const displayMatrix = function (response) {
   const matrixInfo = response.matrix
-  announceUI.post(matrixInfo.code, 'response')
+  announceUI.post(matrixInfo.code, 'matrix-response')
   // Display the details about the matrix
-  announceUI.append(matrixInfo.normal_typeface, 'response')
+  announceUI.append(matrixInfo.normal_typeface, 'matrix-response')
   if (matrixInfo.aux1_typeface) {
-    announceUI.append(`${msg.withWord}${matrixInfo.aux1_typeface}`, 'response')
+    announceUI.append(`${msg.withWord}${matrixInfo.aux1_typeface}`, 'matrix-response')
     if (matrixInfo.aux2_typeface) {
-      announceUI.append(`${msg.andWord}${matrixInfo.aux2_typeface}`, 'response')
+      announceUI.append(`${msg.andWord}${matrixInfo.aux2_typeface}`, 'matrix-response')
     }
   }
   // Display any details about sets owned if logged in.
   if (store.user.isLoggedIn) {
-    announceUI.append(msg.ownerMsg(matrixInfo), 'response')
-    $('#response').append(setUpdateForm())
-    $('#response').on('submit', onUpdateSets)
+    announceUI.append(msg.ownerMsg(matrixInfo), 'matrix-response')
+    $('#matrix-response').append(setUpdateForm())
+    $('#matrix-response').on('submit', onUpdateSets)
   } else {
-    announceUI.append(msg.loginToOwn, 'response')
+    announceUI.append(msg.loginToOwn, 'matrix-response')
   }
   // Empty & reload form
-  loadGetMatrixForm()
+  $('#matrix-request').html(getMatrixTemplate())
 }
 
-const getMatrixFailure = function (response) {
+const failure = function (response) {
   announceUI.clear('announcement')
-  announceUI.post(msg.notInDatabase, 'response')
+  announceUI.post(msg.notInDatabase, 'matrix-response')
 }
 
-const getMatrixSuccess = function (response) {
-  announceUI.clear('announcement')
-  if (response) {
-    displayMatrix(response)
-  } else {  // Response empty; therefore not in database
-    announceUI.post(msg.notInDatabase, 'response')
-  }
-  loadGetMatrixForm()
-}
-
-const loadGetMatrixForm = function () {
-  // Erase DOM and post the form
-  $('#matrix').html(getMatrixTemplate())
-  $('#matrix').on('submit', onGetMatrix)
-  // Clicks removes past announcements.
-  $('#matrix').on('click', announceUI.clear())
-}
-
-const onGetMatrix = function (e) {
+const onRequest = function (e) {
   e.preventDefault()
-  const matrix = getFormFields(e.target).matrix
+  const matrix = getFormFields(e.target.form).matrix
   // Some input?
   if (matrix.code_prefix === '' || matrix.code_suffix === '') {
-    announceUI.clear('response')
+    announceUI.clear('matrix-response')
     announceUI.post(msg.noPrefixSuffix)
   } else {
     announceUI.clear()
     matrixAPI.show(matrix)
-      .then(getMatrixSuccess)
-      .catch(getMatrixFailure)
+      .then(success)
+      .catch(failure)
   }
 }
 
@@ -74,8 +56,18 @@ const onUpdateSets = function (e) {
   store.matrix.quantity = getFormFields(e.target).quantity
   if (store.matrix.quantity === '') store.matrix.quantity = '0'
   matrixAPI.update(store.matrix)
-    .then(getMatrixSuccess)
-    .catch(getMatrixFailure)
+    .then(success)
+    .catch(failure)
 }
 
-module.exports = {loadGetMatrixForm}
+const success = function (response) {
+  announceUI.clear('announcement')
+  if (response) {
+    displayMatrix(response)
+  } else {  // Response empty; therefore not in database
+    announceUI.post(msg.notInDatabase, 'matrix-response')
+  }
+  $('#matrix-request').html(getMatrixTemplate())
+}
+
+module.exports = {onRequest}

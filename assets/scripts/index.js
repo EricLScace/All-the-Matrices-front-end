@@ -2,6 +2,7 @@
 
 const authnDispatchUI = require('./authn-dispatch-ui')
 const config = require('./config')
+const matrixDispatchUI = require('./matrix-dispatch-ui')
 const setAPIOrigin = require('../../lib/set-api-origin')
 const store = require('./store')
 const User = require('./user')
@@ -15,4 +16,5 @@ $(() => {
   $('#app-title').html('<h1>All the Linotype Matrices</h1>')
   // Load initial page content: matrix form & login/register buttons
   authnDispatchUI.initUI()
+  matrixDispatchUI.initUI()
 })
