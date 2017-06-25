@@ -39,6 +39,9 @@ const onRequest = function () {
   // Clear announcement, response & matrix areas.
   announceUI.clear('all')
   $('#authn').html(registerForm)
+  // Hide the register button but keep the space reserved on the screen
+  $('#register-request').css('visibility', 'hidden')
+
 }
 
 const success = function (response) {
