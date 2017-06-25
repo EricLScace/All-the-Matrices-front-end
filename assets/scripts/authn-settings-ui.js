@@ -3,8 +3,8 @@
 const announceUI = require('./announce-ui.js')
 // const authnAPI = require('./authn-api')
 // const getFormFields = require('../../lib/get-form-fields')
-// const msg = require('./messages.js')
-const registerForm = require('../templates/registerForm.handlebars')
+const msg = require('./messages.js')
+const changeSettings = require('../templates/changeSettings.handlebars')
 // const store = require('./store')
 
 // Extracts fields buried inside the registration form object
@@ -51,7 +51,9 @@ const registerForm = require('../templates/registerForm.handlebars')
 const onRequest = function () {
   // Clear announcement, response & matrix areas.
   announceUI.clear('all')
-  // $('#authn').html(settingsForm)
+  // Display settings change form
+  $('#authn').html(changeSettings)
+  announceUI.post(msg.userInfo, 'logged-in-user')
   // Hide the settings icon but keep the space reserved on the screen
   $('#change-settings-request').css('visibility', 'hidden')
 }
