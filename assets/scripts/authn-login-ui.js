@@ -14,6 +14,8 @@ const failure = function (response) {
   // if statusText = 'Unauthorized', inform user of bad email/password.
   if (response.statusText.includes('Unauthorized')) {
     announceUI.post(msg.badEmailPassword, 'announcement')
+  } else {
+    announceUI.post(msg.loginFailUnknownCause, 'announcement')
   }
 }
 

@@ -5,6 +5,7 @@ const store = require('./store')
 const alreadyRegistered = 'This email address is already registered. Attempting to log you in…'
 const andWord = 'and '
 const badEmailPassword = "This email or password was not recognized. Please try again, or re-register."
+const loginFailUnknownCause = 'Sorry! Logging in failed mysteriously ☹️ — try again, or try later.'
 const loggingIn = 'Logging you in…'
 const loggingOut = 'Logging you out…'
 const loginToOwn = 'Logged-in users may register the number of sets of this matrix they own.'
@@ -28,7 +29,7 @@ const ownerMsg = function (matrixInfo) {
 }
 const registeredOK = 'Registered successfully! Please log in.'
 const registering = 'Registering you…'
-const registrationFailed = 'Registration failed mysteriously ☹️ Try again or log-in with a different account.'
+const registrationFailed = 'Sorry! Registration failed mysteriously ☹️ — try again or log-in with a different account.'
 const unequalPassword = 'Passwords not identical; please re-enter both.'
 const userInfo = function () { `${store.user.name} ${store.user.organization}` }
 const withWord = 'with '
@@ -37,6 +38,7 @@ module.exports = {
   alreadyRegistered,
   badEmailPassword,
   andWord,
+  loginFailUnknownCause,
   loggingIn,
   loggingOut,
   loginToOwn,
