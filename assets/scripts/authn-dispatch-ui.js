@@ -27,6 +27,9 @@ const onClick = function (e) {
     case 'cancel-request':
       initUI()
       break
+    case 'change-settings-request':
+      console.log('Change settings request clicked.')
+      break
     case 'log-in-request':
       authnLoginUI.onRequest()
       break

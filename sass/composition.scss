@@ -22,6 +22,11 @@ body {
   min-height: 3 * $font-size;
 }
 
+.icon {
+  margin-left: $font-size;
+  margin-right: $font-size;
+}
+
 .container-fluid {
   display: inline;
   max-width: 786px;
