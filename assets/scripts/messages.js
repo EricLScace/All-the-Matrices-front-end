@@ -4,6 +4,7 @@ const store = require('./store')
 // messages in English for now
 const alreadyRegistered = 'This email address is already registered. Attempting to log you in…'
 const andWord = 'and '
+const badEmailPassword = "This email or password was not recognized. Please try again, or re-register."
 const loggingIn = 'Logging you in…'
 const loggingOut = 'Logging you out…'
 const loginToOwn = 'Logged-in users may register the number of sets of this matrix they own.'
@@ -34,6 +35,7 @@ const withWord = 'with '
 
 module.exports = {
   alreadyRegistered,
+  badEmailPassword,
   andWord,
   loggingIn,
   loggingOut,

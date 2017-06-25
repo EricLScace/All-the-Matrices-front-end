@@ -19,12 +19,12 @@ body {
 
 .authn {
   display: inline;
-  height: 2 * $font-size;
+  min-height: 2 * $font-size;
 }
 
 .container-fluid {
   display: inline;
-  max-width: 860px;
+  max-width: 750px;
   min-width: 640px;
 }
 

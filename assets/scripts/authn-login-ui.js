@@ -11,7 +11,10 @@ const loginForm = require('../templates/loginForm.handlebars')
 const store = require('./store')
 
 const failure = function (response) {
-  return
+  // if statusText = 'Unauthorized', inform user of bad email/password.
+  if (response.statusText.includes('Unauthorized')) {
+    announceUI.post(msg.badEmailPassword, 'announcement')
+  }
 }
 
 const success = function (response) {
