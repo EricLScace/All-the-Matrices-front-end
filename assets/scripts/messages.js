@@ -5,6 +5,7 @@ const store = require('./store')
 const alreadyRegistered = 'This email address is already registered. Attempting to log you in…'
 const andWord = 'and '
 const badEmailPassword = 'This email or password was not recognized. Please try again, or re-register.'
+const changingPassword = 'Changing your password…'
 const loginFailUnknownCause = 'Sorry! Logging in failed mysteriously ☹️ — try again, or try later.'
 const loggingIn = 'Logging you in…'
 const loggingOut = 'Logging you out…'
@@ -27,6 +28,7 @@ const ownerMsg = function (matrixInfo) {
       return `${matrixInfo.owner} has registered ${matrixInfo.quantity} sets of this matrix.`
   }
 }
+const passwordChanged = 'Password changed successfully.'
 const registeredOK = 'Registered successfully! Please log in.'
 const registering = 'Registering you…'
 const registrationFailed = 'Sorry! Registration failed mysteriously ☹️ — try again or log-in with a different account.'
@@ -40,8 +42,9 @@ const withWord = 'with '
 
 module.exports = {
   alreadyRegistered,
-  badEmailPassword,
   andWord,
+  badEmailPassword,
+  changingPassword,
   loginFailUnknownCause,
   loggingIn,
   loggingOut,
@@ -52,6 +55,7 @@ module.exports = {
   noPrefixSuffix,
   otherServerError,
   ownerMsg,
+  passwordChanged,
   registeredOK,
   registering,
   registrationFailed,

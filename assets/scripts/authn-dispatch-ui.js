@@ -28,14 +28,14 @@ const onClick = function (e) {
     case 'cancel-request':
       initUI()
       break
+    case 'change-password-submit':
+      authnSettingsUI.onPasswordSubmit(e)
+      break
     case 'change-settings-cancel':
       authnSettingsUI.onCancel()
       break
     case 'change-settings-request':
       authnSettingsUI.onRequest()
-      break
-    case 'change-settings-submit':
-      authnSettingsUI.onSubmit(e)
       break
     case 'log-in-request':
       authnLoginUI.onRequest()

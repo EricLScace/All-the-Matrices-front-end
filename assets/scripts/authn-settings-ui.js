@@ -3,26 +3,22 @@
 const announceUI = require('./announce-ui.js')
 // const authnAPI = require('./authn-api')
 const authnUtilities = require('./authn-utilities-ui')
-// const getFormFields = require('../../lib/get-form-fields')
+const getFormFields = require('../../lib/get-form-fields')
 const msg = require('./messages.js')
 const changeSettings = require('../templates/changeSettings.handlebars')
-// const store = require('./store')
+const store = require('./store')
 
 const onCancel = function () {
-  // Restore logged-in condition
-  // Restore the matrix submit form
+  // Restore logged-in condition & matrix submit form
   authnUtilities.postLoggedInUserWorkingView()
 }
 
 // Extracts fields buried inside the registration form object
-// const extractFormFields = function (APIObject, user) {
-//   user.email = APIObject.credentials.email
-//   user.password = APIObject.credentials.password
-//   user.passwordConfirmation = APIObject.credentials.password_confirmation
-//   user.name = APIObject.credentials.name
-//   user.organization = APIObject.credentials.organization
-// }
-//
+const extractFormFields = function (APIObject, user) {
+  user.password = APIObject.credentials.new
+  user.passwordConfirmation = APIObject.credentials.new_confirmation
+}
+
 // const failure = function (response) {
 //   if (response.responseText.includes('has already been taken')) {
 //     // Presence of email object indicates duplicate email registration
@@ -45,24 +41,24 @@ const onRequest = function () {
 }
 
 // Submitted the register form
-const onSubmit = function (e) {
+const onPasswordSubmit = function (e) {
   e.preventDefault()
-//   // Clear old error messages, if any.
-//   announceUI.clear('announcement')
-//   // Get the form's contents
-//   const credentialsAPIObject = getFormFields(e.target.form)
-//   // The API object is inconveniently structured; place contents in user.
-//   extractFormFields(credentialsAPIObject, store.user)
-//   // Validate essential credentials present in acceptable format
-//   // If ok, start registration over the API.
-//   // Otherwise wait for user to correct & resubmit form (or do something else)
-//   if (validateCredentials(store.user)) {
-//     // Heroku can be slow; indicate registering.
-//     announceUI.post(msg.registering)
+  // Clear old error messages, if any.
+  announceUI.clear('announcement')
+  // Get the form's contents
+  const credentialsAPIObject = getFormFields(e.target.form)
+  // The API object is inconveniently structured; place contents in user.
+  extractFormFields(credentialsAPIObject, store.user)
+  // Validate essential credentials present in acceptable format
+  // If ok, start registration over the API.
+  // Otherwise wait for user to correct & resubmit form (or do something else)
+  if (authnUtilities.validateProposedPassword(store.user)) {
+    // Heroku can be slow; indicate changing password.
+    announceUI.post(msg.changingPassword)
 //     authnAPI.register(credentialsAPIObject)
 //       .then(success)
 //       .catch(failure)
-//   }
+  }
 }
 
 // const success = function (response) {
@@ -91,5 +87,5 @@ const onSubmit = function (e) {
 module.exports = {
   onCancel,
   onRequest,
-  onSubmit
+  onPasswordSubmit
 }

@@ -2,6 +2,7 @@
 // UX for user registration.
 const announceUI = require('./announce-ui.js')
 const authnAPI = require('./authn-api')
+const authnUtilities = require('./authn-utilities-ui')
 const getFormFields = require('../../lib/get-form-fields')
 const msg = require('./messages.js')
 const registerForm = require('../templates/registerForm.handlebars')
@@ -60,23 +61,20 @@ const success = function (response) {
   announceUI.post(msg.registeredOK, 'announcement')
 }
 
+// Returns false if:
+//    - email is absent
+//    - password or passwordConfirmation absent
+//    - password not same as passwordConfirmation
 const validateCredentials = function (user) {
-  let ok = true
-  // Return true if all validated, else display message & return false.
-  if (user.email === '') {
+  let isEmailPresent = true
+  // Check presence of email address
+  if (user.email === '' || user.email === undefined) {
     announceUI.append(msg.noEmail)
-    ok = false
+    isEmailPresent = false
   }
-  if (user.password === '' || user.passwordConfirmation === '') {
-    announceUI.append(msg.noPassword)
-    ok = false
-  } else {
-    if (user.password !== user.passwordConfirmation) {
-      announceUI.append(msg.unequalPassword)
-      ok = false
-    }
-  }
-  return ok
+  // True if password fields present+identical
+  const isValid = authnUtilities.validateProposedPassword(user)
+  return isEmailPresent && isValid
 }
 
 module.exports = {
