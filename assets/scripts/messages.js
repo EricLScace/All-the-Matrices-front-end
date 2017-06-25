@@ -12,7 +12,8 @@ const loggingOut = 'Logging you out…'
 const loginToOwn = 'Logged-in users may register the number of sets of this matrix they own.'
 const noPrefixSuffix = 'Please enter both the suffix & prefix codes from the matrix.'
 const noEmail = 'Please enter your email address.'
-const noPassword = 'Please enter your password twice identically.'
+const noOldPassword = 'Please enter your current password.'
+const noPassword = 'Please enter your new password twice identically.'
 const notInDatabase = 'Code not yet in this database (or was never manufactured).'
 const otherServerError = 'Database not available. Please try again later.'
 const ownerMsg = function (matrixInfo) {
@@ -32,7 +33,7 @@ const passwordChanged = 'Password changed successfully.'
 const registeredOK = 'Registered successfully! Please log in.'
 const registering = 'Registering you…'
 const registrationFailed = 'Sorry! Registration failed mysteriously ☹️ — try again or log-in with a different account.'
-const unequalPassword = 'Password entries are not identical; please re-enter both.'
+const unequalPassword = 'Your new password entries are not identical; please re-enter both.'
 const userInfo = function () {
   let str = (store.user.name) ? store.user.name : store.user.email
   if (store.user.organization) str += ` — ${store.user.organization}`
@@ -50,6 +51,7 @@ module.exports = {
   loggingOut,
   loginToOwn,
   noEmail,
+  noOldPassword,
   noPassword,
   notInDatabase,
   noPrefixSuffix,

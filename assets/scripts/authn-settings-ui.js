@@ -15,6 +15,7 @@ const onCancel = function () {
 
 // Extracts fields buried inside the registration form object
 const extractFormFields = function (APIObject, user) {
+  user.oldPassword = APIObject.credentials.old
   user.password = APIObject.credentials.new
   user.passwordConfirmation = APIObject.credentials.new_confirmation
 }
@@ -52,7 +53,7 @@ const onPasswordSubmit = function (e) {
   // Validate essential credentials present in acceptable format
   // If ok, start registration over the API.
   // Otherwise wait for user to correct & resubmit form (or do something else)
-  if (authnUtilities.validateProposedPassword(store.user)) {
+  if (validateCredentials(store.user)) {
     // Heroku can be slow; indicate changing password.
     announceUI.post(msg.changingPassword)
 //     authnAPI.register(credentialsAPIObject)
@@ -65,24 +66,21 @@ const onPasswordSubmit = function (e) {
 //   announceUI.post(msg.registeredOK, 'announcement')
 // }
 //
-// const validateCredentials = function (user) {
-//   let ok = true
-//   // Return true if all validated, else display message & return false.
-//   if (user.email === '') {
-//     announceUI.append(msg.noEmail)
-//     ok = false
-//   }
-//   if (user.password === '' || user.passwordConfirmation === '') {
-//     announceUI.append(msg.noPassword)
-//     ok = false
-//   } else {
-//     if (user.password !== user.passwordConfirmation) {
-//       announceUI.append(msg.unequalPassword)
-//       ok = false
-//     }
-//   }
-//   return ok
-// }
+// Returns false if:
+//    - email is absent
+//    - password or passwordConfirmation absent
+//    - password not same as passwordConfirmation
+const validateCredentials = function (user) {
+  let isOldPasswordPresent = true
+  // Check presence of old password
+  if (user.oldPassword === '' || user.oldPassword === undefined) {
+    announceUI.append(msg.noOldPassword)
+    isOldPasswordPresent = false
+  }
+  // True if password fields present+identical
+  const isValid = authnUtilities.validateProposedPassword(user)
+  return isOldPasswordPresent && isValid
+}
 
 module.exports = {
   onCancel,
