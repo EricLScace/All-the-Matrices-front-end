@@ -20,7 +20,7 @@ const failure = function (response) {
 }
 
 const success = function (response) {
-  // Load logged-in name/org, settings, log-out and pwd-change buttons
+  // Load logged-in name/org, settings, log-out and settings buttons
   store.user.setLogInStatus(true,
     response.user.email,
     null,
