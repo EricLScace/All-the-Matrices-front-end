@@ -49,10 +49,7 @@ const onSubmit = function (e) {
   e.preventDefault()
   // Clear old error messages, if any.
   announceUI.post(msg.loggingIn, 'announcement')
-  const credentials = getFormFields(e.target.form)
-  // Cache credentials & launch API request
-  store.user.setLogInStatus(null, credentials.email, credentials.password)
-  authnAPI.logIn(credentials)
+  authnAPI.logIn(getFormFields(e.target.form))
   .then(success)
   .catch(failure)
 }
