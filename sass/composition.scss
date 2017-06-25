@@ -37,6 +37,10 @@ body {
   text-align: right;
 }
 
-.matrix .response .row {
+.matrix .row {
   margin-top: $font-size;
+}
+
+.repsone {
+  margin-top: 3 * $font-size;
 }
