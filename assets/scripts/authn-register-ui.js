@@ -7,6 +7,15 @@ const msg = require('./messages.js')
 const registerForm = require('../templates/registerForm.handlebars')
 const store = require('./store')
 
+// Extracts fields buried inside the registration form object
+const extractFormFields = function (APIObject, user) {
+  user.email = APIObject.credentials.email
+  user.password = APIObject.credentials.password
+  user.passwordConfirmation = APIObject.credentials.password_confirmation
+  user.name = APIObject.credentials.name
+  user.organization = APIObject.credentials.organization
+}
+
 const failure = function (response) {
   if (response.responseText.includes('has already been taken')) {
     // Presence of email object indicates duplicate email registration
@@ -22,13 +31,17 @@ const onSubmit = function (e) {
   e.preventDefault()
   // Clear old error messages, if any.
   announceUI.clear('announcement')
-  const credentials = getFormFields(e.target.form)
-  if (validateCredentials(credentials)) {
+  // Get the form's contents
+  const credentialsAPIObject = getFormFields(e.target.form)
+  // The API object is inconveniently structured; place contents in user.
+  extractFormFields(credentialsAPIObject, store.user)
+  // Validate essential credentials present in acceptable format
+  // If ok, start registration over the API.
+  // Otherwise wait for user to correct & resubmit form (or do something else)
+  if (validateCredentials(store.user)) {
     // Heroku can be slow; indicate registering.
     announceUI.post(msg.registering)
-    // Cache credentials & launch API request
-    store.user.setLogInStatus(null, credentials.email, credentials.password, null, null, credentials.name, credentials.org)
-    authnAPI.register(credentials)
+    authnAPI.register(credentialsAPIObject)
       .then(success)
       .catch(failure)
   }
@@ -41,28 +54,29 @@ const onRequest = function () {
   $('#authn').html(registerForm)
   // Hide the register button but keep the space reserved on the screen
   $('#register-request').css('visibility', 'hidden')
-
 }
 
 const success = function (response) {
   announceUI.post(msg.registeredOK, 'announcement')
 }
 
-const validateCredentials = function (credentials) {
+const validateCredentials = function (user) {
+  let ok = true
   // Return true if all validated, else display message & return false.
-  if (credentials.email) {
+  if (user.email === '') {
     announceUI.append(msg.noEmail)
-    return false
+    ok = false
   }
-  if (credentials.password || credentials.password_confirmation) {
+  if (user.password === '' || user.passwordConfirmation === '') {
     announceUI.append(msg.noPassword)
-    return false
+    ok = false
+  } else {
+    if (user.password !== user.passwordConfirmation) {
+      announceUI.append(msg.unequalPassword)
+      ok = false
+    }
   }
-  if (credentials.password !== credentials.password_confirmation) {
-    announceUI.append(msg.unequalPassword)
-    return false
-  }
-  return true
+  return ok
 }
 
 module.exports = {

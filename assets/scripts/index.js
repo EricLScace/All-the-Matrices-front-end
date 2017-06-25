@@ -8,8 +8,8 @@ const User = require('./user')
 
 $(() => {
   setAPIOrigin(location, config)
-  // Instantiate a new User in store (there should not be one).
-  if (!store.User) store.user = new User()
+  // Instantiate a new User in store.
+  store.user = new User(false)
   // Insert application heading (done after the basic DOM loads to avoid
   //    jumping around on the screen at page load.
   $('#app-title').html('<h1>All the Linotype Matrices</h1>')

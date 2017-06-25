@@ -23,20 +23,24 @@ User.prototype.setLogInStatus = function (isLoggedIn, email, password, id, authN
       this.authNToken = authNToken
       this.name = name
       this.org = org
+      // remove cached password information
+      this.password = ''
+      this.passwordConfirmation = ''
       return true
     case null:
       // Cache proffered email & password for future use
       this.isLoggedIn = null
       this.email = email
-      this._password = password
+      this.password = password
       return null
     default:
-      // Log out a player by changing _isLoggedIn and erasing credentials.
+      // Log out a player by changing isLoggedIn and erasing credentials.
       this.isLoggedIn = false
       this.email = ''
       this.id = ''
       this.authNToken = ''
-      this._password = ''
+      this.password = ''
+      this.passwordConfirmation = ''
       return false
   }
 }
