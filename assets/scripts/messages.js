@@ -30,6 +30,7 @@ const ownerMsg = function (matrixInfo) {
   }
 }
 const passwordChanged = 'Password changed successfully.'
+const passwordChangeFailed = 'Sorry! Registration failed mysteriously ☹️ — please try again later.'
 const registeredOK = 'Registered successfully! Please log in.'
 const registering = 'Registering you…'
 const registrationFailed = 'Sorry! Registration failed mysteriously ☹️ — try again or log-in with a different account.'
@@ -58,6 +59,7 @@ module.exports = {
   otherServerError,
   ownerMsg,
   passwordChanged,
+  passwordChangeFailed,
   registeredOK,
   registering,
   registrationFailed,

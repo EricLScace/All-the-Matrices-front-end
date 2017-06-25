@@ -4,6 +4,23 @@
 const config = require('./config')
 const store = require('./store')
 
+// Change password API call
+const changePassword = function (creds) {
+  return $.ajax({
+    url: config.apiOrigin + '/change-password/' + store.user.id,
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Token token=' + store.user.authNToken
+    },
+    data: {
+      'passwords': {
+        'old': store.user.oldPassword,
+        'new': store.user.password
+      }
+    }
+  })
+}
+
 // Invokes sign-in API to log in user
 const logIn = function (creds) {
   // Duplicate password to meet API demand for password_confirmation
@@ -41,6 +58,7 @@ const register = function (credentials) {
 }
 
 module.exports = {
+  changePassword,
   logIn,
   logOut,
   register

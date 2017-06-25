@@ -1,7 +1,7 @@
 'use strict'
 // UX for settings changes.
 const announceUI = require('./announce-ui.js')
-// const authnAPI = require('./authn-api')
+const authnAPI = require('./authn-api')
 const authnUtilities = require('./authn-utilities-ui')
 const getFormFields = require('../../lib/get-form-fields')
 const msg = require('./messages.js')
@@ -20,15 +20,11 @@ const extractFormFields = function (APIObject, user) {
   user.passwordConfirmation = APIObject.credentials.new_confirmation
 }
 
-// const failure = function (response) {
-//   if (response.responseText.includes('has already been taken')) {
-//     // Presence of email object indicates duplicate email registration
-//     announceUI.post(msg.alreadyRegistered, 'announcement')
-//     // Try logging in
-//   } else {
-//     announceUI.post(msg.registrationFailed, 'announcement')
-//   }
-// }
+const failure = function (response) {
+  announceUI.post(msg.passwordChangeFailed, 'announcement')
+  // Pause for 3 seconds to let user see message, then post working view
+  setTimeout(authnUtilities.postLoggedInUserWorkingView, 2500)
+}
 
 // Clicked the Settings icon
 const onRequest = function () {
@@ -41,7 +37,7 @@ const onRequest = function () {
   $('#change-settings-request').css('visibility', 'hidden')
 }
 
-// Submitted the register form
+// Submit the password change request
 const onPasswordSubmit = function (e) {
   e.preventDefault()
   // Clear old error messages, if any.
@@ -56,16 +52,18 @@ const onPasswordSubmit = function (e) {
   if (validateCredentials(store.user)) {
     // Heroku can be slow; indicate changing password.
     announceUI.post(msg.changingPassword)
-//     authnAPI.register(credentialsAPIObject)
-//       .then(success)
-//       .catch(failure)
+    authnAPI.changePassword(credentialsAPIObject)
+      .then(success)
+      .catch(failure)
   }
 }
 
-// const success = function (response) {
-//   announceUI.post(msg.registeredOK, 'announcement')
-// }
-//
+const success = function (response) {
+  announceUI.post(msg.passwordChanged, 'announcement')
+  // Pause for 3 seconds to let user see message, then post working view
+  setTimeout(authnUtilities.postLoggedInUserWorkingView, 2500)
+}
+
 // Returns false if:
 //    - email is absent
 //    - password or passwordConfirmation absent
