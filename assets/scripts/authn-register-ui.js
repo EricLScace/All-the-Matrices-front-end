@@ -8,7 +8,6 @@ const getFormFields = require('../../lib/get-form-fields')
 const msg = require('./messages.js')
 const registerForm = require('../templates/registerForm.handlebars')
 const store = require('./store')
-
 // Extracts fields buried inside the registration form object
 const extractFormFields = function (APIObject, user) {
   user.email = APIObject.credentials.email
@@ -22,7 +21,8 @@ const failure = function (response) {
   if (response.responseText.includes('has already been taken')) {
     // Presence of email object indicates duplicate email registration
     announceUI.post(msg.alreadyRegistered, 'announcement')
-    // Try logging in
+    // Try logging in after a pause
+    setTimeout(function () { authnLogin.loginAPICall(store.user) }, 2500)
   } else {
     announceUI.post(msg.registrationFailed, 'announcement')
   }
