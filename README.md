@@ -13,7 +13,7 @@ This web app helps letterpress compositors:
 ## Back-end repo
 [Back end repo is here.](https://github.com/EricLScace/All-the-Matrices-back-end/)
 
-## Extensions beyond minimum requirements
+## Extensions beyond GA project minimum requirements
 * Browser:
   * Handlebars
   * Bootstrap
