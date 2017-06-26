@@ -3,6 +3,8 @@
 * All issues are presently tracked in the back-end repo.
 
 # Welcome to the All-the-Matrices front-end browser client!
+
+## Purpose
 This web app helps letterpress compositors:
 * identify Linotype matrices and their typefaces;
 * register the sets of Linotype matrices that they own.
