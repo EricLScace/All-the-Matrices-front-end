@@ -8,6 +8,7 @@ const msg = require('./messages.js')
 
 // Display logged-in condition & matrix request form
 const postLoggedInUserWorkingView = function () {
+  announceUI.clear('announcement')
   $('#authn').html(loggedInForm) // Load authn area.
   announceUI.post(msg.userInfo, 'logged-in-user') // Add user name
   $('#matrix-request').html(getMatrixTemplate())
@@ -15,6 +16,7 @@ const postLoggedInUserWorkingView = function () {
 
 // Display log-in/register buttons & matrix request form.
 const postPublicUserWorkingView = function () {
+  announceUI.clear('announcement')
   $('#authn').html(logInRegisterButtons())
   $('#matrix-request').html(getMatrixTemplate())
 }

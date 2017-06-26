@@ -29,7 +29,7 @@ const onClick = function (e) {
       authnSettingsUI.onPasswordSubmit(e)
       break
     case 'change-settings-cancel':
-      authnSettingsUI.onCancel()
+      authnUtilitiesUI.postLoggedInUserWorkingView()
       break
     case 'change-settings-request':
       authnSettingsUI.onRequest()

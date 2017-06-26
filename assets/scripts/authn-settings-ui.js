@@ -8,11 +8,6 @@ const msg = require('./messages.js')
 const changeSettings = require('../templates/changeSettings.handlebars')
 const store = require('./store')
 
-const onCancel = function () {
-  // Restore logged-in condition & matrix submit form
-  authnUtilities.postLoggedInUserWorkingView()
-}
-
 // Extracts fields buried inside the registration form object
 const extractFormFields = function (APIObject, user) {
   user.oldPassword = APIObject.credentials.old
@@ -81,7 +76,6 @@ const validateCredentials = function (user) {
 }
 
 module.exports = {
-  onCancel,
   onRequest,
   onPasswordSubmit
 }
