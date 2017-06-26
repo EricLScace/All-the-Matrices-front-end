@@ -15,15 +15,28 @@ const failure = function () {
 const onUpdate = function (e) {
   e.preventDefault()
   store.matrix.quantity = getFormFields(e.target.form).quantity
-  if (store.matrix.quantity === '') store.matrix.quantity = '0'
-  matrixAPI.update(store.matrix)
+  if (validateQuantity(store.matrix.quantity)) {
+    matrixAPI.update(store.matrix)
     .then(success)
     .catch(failure)
+  }
 }
 
 const success = function (response) {
   matrixUtiltiesUI.displayMatrix(response)
   announceUI.append(msg.matrixSetQuantityUpdated, 'matrix-response')
+}
+
+// Return true if entered quantity is a positive integer
+// Else return false
+const validateQuantity = function (quantity) {
+  // Ignore a blank: probably a click error that would erase the quantity/
+  if (quantity === '') return false
+  if (quantity < 0) {
+    announceUI.post(msg.notPositiveInteger)
+    return false
+  }
+  return true
 }
 
 module.exports = {onUpdate}

@@ -19,6 +19,7 @@ const noEmail = 'Please enter your email address.'
 const noOldPassword = 'Please enter your current password.'
 const noPassword = 'Please enter your new password twice identically.'
 const notInDatabase = 'Code not yet in this database (or was never manufactured).'
+const notPositiveInteger = 'Please enter a positive integer.'
 const otherServerError = 'Database not available. Please try again later.'
 const ownerMsg = function (matrixInfo) {
   matrixInfo.owner = (matrixInfo.owner === '') ? 'User' : matrixInfo.owner
@@ -63,6 +64,7 @@ module.exports = {
   noOldPassword,
   noPassword,
   notInDatabase,
+  notPositiveInteger,
   noPrefixSuffix,
   otherServerError,
   ownerMsg,
