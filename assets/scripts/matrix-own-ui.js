@@ -32,7 +32,10 @@ const success = function (response) {
 const validateQuantity = function (quantity) {
   // Ignore a blank: probably a click error that would erase the quantity/
   if (quantity === '') return false
-  if (quantity < 0) {
+  // Be sure quantity is not a string
+  quantity = +quantity
+  // No negative numbers or non-integers
+  if (quantity < 0 || !Number.isInteger(quantity)) {
     announceUI.post(msg.notPositiveInteger)
     return false
   }
