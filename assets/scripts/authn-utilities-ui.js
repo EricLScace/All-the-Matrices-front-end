@@ -1,15 +1,22 @@
 'use strict'
 // Short utility functions used by other authn-UI modules.
 const announceUI = require('./announce-ui')
+const getMatrixTemplate = require('../templates/getMatrix.handlebars')
 const loggedInForm = require('../templates/loggedInForm.handlebars')
-const matrixGetUI = require('./matrix-get-ui')
+const logInRegisterButtons = require('../templates/logInRegisterButtons.handlebars')
 const msg = require('./messages.js')
 
-// Display logged-in condition & matrix submit form
+// Display logged-in condition & matrix request form
 const postLoggedInUserWorkingView = function () {
   $('#authn').html(loggedInForm) // Load authn area.
   announceUI.post(msg.userInfo, 'logged-in-user') // Add user name
-  matrixGetUI.loadGetMatrixForm() // Loads matrix area
+  $('#matrix-request').html(getMatrixTemplate())
+}
+
+// Display log-in/register buttons & matrix request form.
+const postPublicUserWorkingView = function () {
+  $('#authn').html(logInRegisterButtons())
+  $('#matrix-request').html(getMatrixTemplate())
 }
 
 // Examines proposed password & passwordConfirmation in store.user
@@ -36,5 +43,6 @@ const validateProposedPassword = function (user) {
 
 module.exports = {
   postLoggedInUserWorkingView,
+  postPublicUserWorkingView,
   validateProposedPassword
 }

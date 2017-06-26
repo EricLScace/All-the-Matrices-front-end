@@ -15,8 +15,8 @@ const clear = function (loc) {
   if (!arguments.length) loc = 'announcement'
   if (loc === 'all') {
     $('#announcement').html('')
-    $('#matrix').html('')
-    $('#response').html('')
+    $('#matrix-request').html('')
+    $('#matrix-response').html('')
     return
   }
   // Else erase specified area.

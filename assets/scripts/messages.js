@@ -20,13 +20,13 @@ const ownerMsg = function (matrixInfo) {
   matrixInfo.owner = (matrixInfo.owner === '') ? 'User' : matrixInfo.owner
   switch (matrixInfo.quantity) {
     case null:
-      return 'You have not registered any sets of this matrix.'
+      return '<br><br>You have not registered any sets of this matrix.'
     case '0':
-      return 'You have not registered any sets of this matrix.'
+      return '<br><br>You have not registered any sets of this matrix.'
     case '1':
-      return `${matrixInfo.owner} has registered 1 set of this matrix.`
+      return `<br><br>${matrixInfo.owner} has registered 1 set of this matrix.`
     default:
-      return `${matrixInfo.owner} has registered ${matrixInfo.quantity} sets of this matrix.`
+      return `<br><br>${matrixInfo.owner} has registered ${matrixInfo.quantity} sets of this matrix.`
   }
 }
 const passwordChanged = 'Password changed successfully.'
