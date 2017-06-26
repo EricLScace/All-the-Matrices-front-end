@@ -2,6 +2,7 @@
 // Dispatcher for events in the matrix sections of the DOM.
 const getMatrix = require('./matrix-get-ui')
 const getMatrixTemplate = require('../templates/getMatrix.handlebars')
+const matrixOwn = require('./matrix-own-ui')
 
 // Initialize matrix section of DOM
 // Invoked by index.js at page load.
@@ -18,6 +19,8 @@ const onClick = function (e) {
     case 'matrix-request':
       getMatrix.onRequest(e)
       break
+    case 'update-sets-submit':
+      matrixOwn.onUpdate(e)
   }
 }
 

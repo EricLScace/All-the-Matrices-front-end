@@ -10,6 +10,10 @@ const loginFailUnknownCause = 'Sorry! Logging in failed mysteriously ☹️ — 
 const loggingIn = 'Logging you in…'
 const loggingOut = 'Logging you out…'
 const loginToOwn = 'Logged-in users may register the number of sets of this matrix they own.'
+const lookingUpMatrix = 'Looking up this matrix code…'
+const matrixGetFailed = 'Sorry! The matrix code look-up failed mysteriously ☹️ — try again, or try later.'
+const matrixSetQuantityUpdated = 'Matrix set quantity updated.'
+const matrixSetQuantityUpdateFailed = 'Sorry! The update of the number of matrix sets owned failed mysteriously ☹️ — try again, or try later.'
 const noPrefixSuffix = 'Please enter both the suffix & prefix codes from the matrix.'
 const noEmail = 'Please enter your email address.'
 const noOldPassword = 'Please enter your current password.'
@@ -51,6 +55,10 @@ module.exports = {
   loggingIn,
   loggingOut,
   loginToOwn,
+  lookingUpMatrix,
+  matrixGetFailed,
+  matrixSetQuantityUpdated,
+  matrixSetQuantityUpdateFailed,
   noEmail,
   noOldPassword,
   noPassword,
