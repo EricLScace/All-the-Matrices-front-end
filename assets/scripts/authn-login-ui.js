@@ -9,6 +9,12 @@ const msg = require('./messages.js')
 const loginForm = require('../templates/loginForm.handlebars')
 const store = require('./store')
 
+const loginAPICall = function (credentials) {
+  authnAPI.logIn(credentials)
+  .then(success)
+  .catch(failure)
+}
+
 const failure = function (response) {
   // if statusText = 'Unauthorized', inform user of bad email/password.
   if (response.statusText.includes('Unauthorized')) {
@@ -45,12 +51,11 @@ const onSubmit = function (e) {
   e.preventDefault()
   // Clear old error messages, if any.
   announceUI.post(msg.loggingIn, 'announcement')
-  authnAPI.logIn(getFormFields(e.target.form))
-  .then(success)
-  .catch(failure)
+  loginAPICall(getFormFields(e.target.form))
 }
 
 module.exports = {
+  loginAPICall,
   onRequest,
   onSubmit
 }

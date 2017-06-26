@@ -2,6 +2,7 @@
 // UX for user registration.
 const announceUI = require('./announce-ui.js')
 const authnAPI = require('./authn-api')
+const authnLogin = require('./authn-login-ui')
 const authnUtilities = require('./authn-utilities-ui')
 const getFormFields = require('../../lib/get-form-fields')
 const msg = require('./messages.js')
@@ -59,6 +60,8 @@ const onRequest = function () {
 
 const success = function (response) {
   announceUI.post(msg.registeredOK, 'announcement')
+  // Log user in with cached & received credentials
+  authnLogin.loginAPICall(store.user)
 }
 
 // Returns false if:
