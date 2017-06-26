@@ -19,6 +19,7 @@ This web app helps letterpress compositors:
 * Browser:
   * Handlebars
   * Bootstrap
+    * Almost fits on an iPhone 5
   * SCSS/SASS
   * Font Awecome icons integrated; click on gear icon for settings
   * Authentication employs a delegated click-handler on the `authn` `<div>`
