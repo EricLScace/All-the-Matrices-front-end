@@ -24,7 +24,7 @@ const onUpdate = function (e) {
 
 const success = function (response) {
   matrixUtiltiesUI.displayMatrix(response)
-  announceUI.append(msg.matrixSetQuantityUpdated, 'matrix-response')
+  announceUI.append(msg.matrixSetQuantityUpdated)
 }
 
 // Return true if entered quantity is a positive integer
