@@ -9,7 +9,7 @@ const webpackConfig = clone(require('./webpack').options)
 const port = +('GA'.split('').reduce((p, c) => p + c.charCodeAt(), ''))
 
 // make `jQuery` and `$` available in the development console
-webpackConfig.module.loaders.push({
+webpackConfig.module.rules.push({
   test: require.resolve('jquery'),
   use: [{
     loader: 'expose-loader',
