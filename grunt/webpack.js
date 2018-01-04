@@ -42,12 +42,12 @@ module.exports = {
         {
           test: /\.css/,
           loader: 'style!css',
-          includePaths: [path.resolve(__dirname, './node_modules')]
+          include: [path.resolve(__dirname, './node_modules')]
         },
         {
           test: /\.scss/,
           loader: 'style!css!sass',
-          includePaths: [path.resolve(__dirname, './node_modules')]
+          include: [path.resolve(__dirname, './node_modules')]
         },
         {
           test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
