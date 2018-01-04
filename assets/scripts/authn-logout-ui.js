@@ -22,8 +22,8 @@ const onRequest = function () {
   // Tell user he is being logged out.
   announceUI.post(msg.loggingOut, 'announcement')
   authnAPI.logOut()
-  .then(success)
-  .catch(failure)
+    .then(success)
+    .catch(failure)
 }
 
 const success = function (response) {

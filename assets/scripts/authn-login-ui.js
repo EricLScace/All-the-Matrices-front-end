@@ -11,8 +11,8 @@ const store = require('./store')
 
 const loginAPICall = function (credentials) {
   authnAPI.logIn(credentials)
-  .then(success)
-  .catch(failure)
+    .then(success)
+    .catch(failure)
 }
 
 const failure = function (response) {

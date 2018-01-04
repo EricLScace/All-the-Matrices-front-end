@@ -17,8 +17,8 @@ const onUpdate = function (e) {
   store.matrix.quantity = getFormFields(e.target.form).quantity
   if (validateQuantity(store.matrix.quantity)) {
     matrixAPI.update(store.matrix)
-    .then(success)
-    .catch(failure)
+      .then(success)
+      .catch(failure)
   }
 }
 
