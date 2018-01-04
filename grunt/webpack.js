@@ -49,7 +49,6 @@ module.exports = {
         },
         {
           test: /\.scss/,
-          // loader: 'style!css!sass',
           // include: [path.resolve(__dirname, './node_modules')]
           use: [
             { loader: 'style-loader' },
@@ -59,7 +58,15 @@ module.exports = {
         },
         {
           test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 10000,
+                mimetype: 'application/font-woff'
+              }
+            }
+          ]
         },
         {
           test: /\.(ttf|eot|svg|png|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
