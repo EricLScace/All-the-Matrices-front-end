@@ -11,7 +11,13 @@ const port = +('GA'.split('').reduce((p, c) => p + c.charCodeAt(), ''))
 // make `jQuery` and `$` available in the development console
 webpackConfig.module.loaders.push({
   test: require.resolve('jquery'),
-  loader: 'expose?jQuery!expose?$'
+  use: [{
+    loader: 'expose-loader',
+    options: 'jQuery'
+  }, {
+    loader: 'expose-loader',
+    options: '$'
+  }]
 })
 
 module.exports = {
