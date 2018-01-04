@@ -70,12 +70,17 @@ module.exports = {
           ]
         },
         { test: /\.(hbs|handlebars)$/,
-          loader: 'handlebars-loader',
-          query: {
-            helperDirs: [
-              path.join(__dirname, '/../assets/scripts/templates/helpers')
-            ]
-          }
+          use: [
+            { loader: 'handlebars-loader',
+              options: {
+                query: {
+                  helperDirs: [
+                    path.join(__dirname, '/../assets/scripts/templates/helpers')
+                  ]
+                }
+              }
+            }
+          ]
         }
       ]
     },
