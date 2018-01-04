@@ -23,10 +23,10 @@ module.exports = {
   },
 
   start: {
-    keepAlive: true,
+    // keepAlive: true,
     webpack: {
-      devtool: 'source-map',
-      debug: 'true'
+      devtool: 'source-map'
+      // debug: 'true'
     }
   }
 }
