@@ -39,16 +39,14 @@ module.exports = {
             presets: ['es2015']
           }
         },
-        {
-          test: /\.css/,
+        { test: /\.css/,
           use: [
             { loader: 'style-loader' },
             { loader: 'css-loader' }
           ]
           // include: [path.resolve(__dirname, './node_modules')]
         },
-        {
-          test: /\.scss/,
+        { test: /\.scss/,
           // include: [path.resolve(__dirname, './node_modules')]
           use: [
             { loader: 'style-loader' },
@@ -56,11 +54,9 @@ module.exports = {
             { loader: 'sass-loader' }
           ]
         },
-        {
-          test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        { test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           use: [
-            {
-              loader: 'url-loader',
+            { loader: 'url-loader',
               options: {
                 limit: 10000,
                 mimetype: 'application/font-woff'
@@ -68,12 +64,12 @@ module.exports = {
             }
           ]
         },
-        {
-          test: /\.(ttf|eot|svg|png|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'file-loader'
+        { test: /\.(ttf|eot|svg|png|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: [
+            { loader: 'file-loader' }
+          ]
         },
-        {
-          test: /\.(hbs|handlebars)$/,
+        { test: /\.(hbs|handlebars)$/,
           loader: 'handlebars-loader',
           query: {
             helperDirs: [
