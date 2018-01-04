@@ -30,41 +30,55 @@ module.exports = {
     ],
 
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          loader: 'babel',
-          query: {
-            presets: ['es2015']
+          use: {
+            loader: 'babel-loader',
+            options: { presets: ['es2015'] }
           }
         },
-        {
-          test: /\.css/,
-          loader: 'style!css',
-          include: [path.resolve(__dirname, './node_modules')]
+        { test: /\.css/,
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' }
+          ]
+          // include: [path.resolve(__dirname, './node_modules')]
         },
-        {
-          test: /\.scss/,
-          loader: 'style!css!sass',
-          include: [path.resolve(__dirname, './node_modules')]
+        { test: /\.scss/,
+          // include: [path.resolve(__dirname, './node_modules')]
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'sass-loader' }
+          ]
         },
-        {
-          test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        { test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: [
+            { loader: 'url-loader',
+              options: {
+                limit: 10000,
+                mimetype: 'application/font-woff'
+              }
+            }
+          ]
         },
-        {
-          test: /\.(ttf|eot|svg|png|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'file-loader'
+        { test: /\.(ttf|eot|svg|png|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: [
+            { loader: 'file-loader' }
+          ]
         },
-        {
-          test: /\.(hbs|handlebars)$/,
-          loader: 'handlebars-loader',
-          query: {
-            helperDirs: [
-              path.join(__dirname, '/../assets/scripts/templates/helpers')
-            ]
-          }
+        { test: /\.(hbs|handlebars)$/,
+          use: [
+            { loader: 'handlebars-loader',
+              options: {
+                helperDirs: [
+                  path.join(__dirname, '/../assets/scripts/templates/helpers')
+                ]
+              }
+            }
+          ]
         }
       ]
     },
