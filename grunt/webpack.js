@@ -41,13 +41,21 @@ module.exports = {
         },
         {
           test: /\.css/,
-          loader: 'style!css',
-          include: [path.resolve(__dirname, './node_modules')]
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' }
+          ]
+          // include: [path.resolve(__dirname, './node_modules')]
         },
         {
           test: /\.scss/,
-          loader: 'style!css!sass',
-          include: [path.resolve(__dirname, './node_modules')]
+          // loader: 'style!css!sass',
+          // include: [path.resolve(__dirname, './node_modules')]
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'sass-loader' }
+          ]
         },
         {
           test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
