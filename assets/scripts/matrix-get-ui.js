@@ -31,7 +31,8 @@ const success = function (response) {
   announceUI.clear('announcement')
   if (response) {
     matrixUtiltiesUI.displayMatrix(response)
-  } else {  // Response empty; therefore not in database
+  } else {
+    // Response empty; therefore not in database
     announceUI.post(msg.notInDatabase, 'matrix-response')
   }
   $('#matrix-request').html(getMatrixTemplate())
