@@ -34,9 +34,9 @@ module.exports = {
         {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          loader: 'babel-loader',
-          query: {
-            presets: ['es2015']
+          use: {
+            loader: 'babel-loader',
+            options: { presets: ['es2015'] }
           }
         },
         { test: /\.css/,
@@ -73,11 +73,9 @@ module.exports = {
           use: [
             { loader: 'handlebars-loader',
               options: {
-                query: {
-                  helperDirs: [
-                    path.join(__dirname, '/../assets/scripts/templates/helpers')
-                  ]
-                }
+                helperDirs: [
+                  path.join(__dirname, '/../assets/scripts/templates/helpers')
+                ]
               }
             }
           ]
