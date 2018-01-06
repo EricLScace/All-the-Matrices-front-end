@@ -1,8 +1,14 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
   "extends": "standard",
   "root": true,
   "env": {
-      "node": true
+    "browser": true,
+    "commonjs": true,
+    "jquery": true,
+    "node": true
   },
   "rules": {
     "prefer-const": "error",
